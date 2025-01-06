@@ -3,22 +3,30 @@
 The repo contains a reproducible issue with `@open-rpc/schema-utils-js` resulting in the Node process OOM-ing.
 
 - `demo.json` - A valid OpenRPC document containing a recursive type definition
-- `index.ts` - Small program to load a json file and call `parseOpenRPCDocument`
+- `index.ts` - Small program to load and parse a json file
 
 ## Running
 1. Install deps
-```
+```shell
 yarn
 ```
 2. Run demo with included `demo.json`
+```shell
+yarn demo openrpc
 ```
-yarn demo
+This will result in the node process crashing due to the heap being out of memeory.
+
+You can also run the program with any OpenRPC Document:
+ 
+```shell
+yarn demo openrpc -f <PATH>
 ```
-> Note: You can also run the program with any OpenRPC Document
-> 
-> ```shell
-> yarn demo -f <PATH>
-> ```
+
+Additionally, parsing can be run using [`@apidevtools/json-schema-ref-parser`](https://github.com/APIDevTools/json-schema-ref-parser):
+```shell
+yarn demo ref-parse
+```
+This does not result in an issue parsing.
 
 ## Additional Info
 
