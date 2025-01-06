@@ -1,0 +1,40 @@
+{
+  "openrpc": "1.2.2",
+  "info": {
+    "title": "demo",
+    "version": "0.0.0"
+  },
+  "methods": [
+    {
+      "name": "SomeMethod",
+      "params": [],
+      "result": {
+        "name": "SomeMethod.Result",
+        "schema": {
+          "$ref": "#/components/schemas/RecursiveType"
+        }
+      },
+      "paramStructure": "by-position"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "RecursiveType": {
+        "type": "object",
+        "properties": {
+          "Field1": {
+            "$ref": "#/components/schemas/Array_of_RecursiveType"
+          }
+        }
+      },
+      "Array_of_RecursiveType": {
+        "type": [
+          "array"
+        ],
+        "items": {
+          "$ref": "#/components/schemas/RecursiveType"
+        }
+      }
+    }
+  }
+}
